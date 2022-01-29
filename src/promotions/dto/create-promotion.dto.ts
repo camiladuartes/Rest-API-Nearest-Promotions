@@ -1,9 +1,6 @@
 import { IsInt, IsString } from 'class-validator';
 
 export class CreatePromotionDto {
-  @IsInt()
-  readonly id: number;
-  
   @IsString()
   readonly product: string;
 
