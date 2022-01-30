@@ -2,7 +2,12 @@ import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
-// localhost:3000/api
+// Swagger Documentation: localhost:3000/api
+// API Endpoint: localhost:3000/promotions
+/* Before you must install: 
+ * Swagger: `$ npm install --save @nestjs/swagger swagger-ui-express`
+ * Mongo: `$ npm install --save @nestjs/mongoose mongoose` and https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
+ */
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
