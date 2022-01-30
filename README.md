@@ -71,3 +71,16 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+---
+## Swagger Documentation: 
+
+- localhost:3000/api
+
+## API Endpoint: 
+- localhost:3000/promotions
+
+## Before you must install: 
+
+- Swagger: ```$ npm install --save @nestjs/swagger swagger-ui-express```
+- Mongo: ```$ npm install --save @nestjs/mongoose mongoose``` and https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
