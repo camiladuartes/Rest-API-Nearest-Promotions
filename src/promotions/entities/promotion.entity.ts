@@ -8,16 +8,9 @@ export type PromotionDocument = Promotion & Document;
 export class Promotion {
 
     @ApiProperty({
-        example: 12,
-        description: 'The id of the promotion'
+        example: 'Tênis Nike Royal Court',
+        description: 'The promotion product name'
     })
-    @Prop()
-    id: number;
-    
-    /**
-     * The name of the Promotion object
-     * @example Tênis Feminino Nike
-     */
     @Prop()
     product: string;
 
@@ -37,6 +30,22 @@ export class Promotion {
     location: string;
 
     @ApiProperty({
+        example: -1500,
+        description: 'The store latitude'
+
+    })
+    @Prop()
+    lat: number;
+
+    @ApiProperty({
+        example: +350,
+        description: 'The store longitude'
+
+    })
+    @Prop()
+    long: number;
+
+    @ApiProperty({
         example: 256.30,
         description: 'The current price of this promotion product'
 
@@ -50,6 +59,20 @@ export class Promotion {
     })
     @Prop()
     promoPercentage: number;
+
+    @ApiProperty({
+        example: true,
+        description: 'The status of the promotion'
+    })
+    @Prop()
+    active: boolean;
+
+    @ApiProperty({
+        example: new Date(),
+        description: 'The date of creation of the promotion'
+    })
+    @Prop()
+    dateCreated: Date;
 }
 
 export const PromotionSchema = SchemaFactory.createForClass(Promotion);
