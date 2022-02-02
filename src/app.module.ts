@@ -1,12 +1,14 @@
 import { Module } from '@nestjs/common';
 import { PromotionsModule } from './promotions/promotions.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { UsersModule } from './users/users.module';
 
 // API root module; first thing to be called
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://localhost/nest'),
-    PromotionsModule
+    PromotionsModule,
+    UsersModule
   ],
 })
 export class AppModule {}
