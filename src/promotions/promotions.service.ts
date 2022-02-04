@@ -12,7 +12,7 @@ export class PromotionsService {
     }
 
     create(createPromotionDto: CreatePromotionDto) {
-        // Instanciate a playlist for object-relational mapping
+        // Instanciate a comment for object-relational mapping
         const promotion = new this.promotionModel(createPromotionDto);
         return promotion.save();
     }

@@ -3,6 +3,7 @@ import { PromotionsModule } from './promotions/promotions.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { VotesModule } from './votes/votes.module';
+import { CommentsModule } from './comments/comments.module';
 
 // API root module; first thing to be called
 @Module({
@@ -10,7 +11,8 @@ import { VotesModule } from './votes/votes.module';
     MongooseModule.forRoot('mongodb://localhost/nest'),
     PromotionsModule,
     UsersModule,
-    VotesModule
+    VotesModule,
+    CommentsModule
   ],
 })
 export class AppModule {}
