@@ -12,10 +12,12 @@ export class CreateVoteDto {
     readonly idPromotion: string;
   
     @IsBoolean()
+    @IsNotEmpty()
     readonly positive: boolean;
     
     
     @IsDate()
+    @IsNotEmpty()
     @Type(() => Date)
     readonly dateCreated: Date;
 
