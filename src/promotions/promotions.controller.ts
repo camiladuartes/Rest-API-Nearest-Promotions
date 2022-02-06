@@ -46,7 +46,7 @@ export class PromotionsController {
         return this.promotionsService.findOne(id);
     }
 
-    @Patch()
+    @Patch(':id')
     @ApiOperation({ summary: 'Updates a promotion by id' })
     @ApiResponse({
         status: 200,
@@ -56,7 +56,7 @@ export class PromotionsController {
     update(@Param('id') id: string, @Body() updatePromotionDto: UpdatePromotionDto) {
         return this.promotionsService.update(id, updatePromotionDto);
     }
-
+    
     @Delete(':id')
     @ApiOperation({ summary: 'Deletes a promotion' })
     @ApiResponse({
