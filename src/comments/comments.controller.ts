@@ -46,7 +46,7 @@ export class CommentsController {
         return this.commentsService.findOne(id);
     }
 
-    @Patch()
+    @Patch(':id')
     @ApiOperation({ summary: 'Updates a comment by id' })
     @ApiResponse({
         status: 200,
