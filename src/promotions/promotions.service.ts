@@ -42,4 +42,27 @@ export class PromotionsService {
     remove(id: string) {
         return this.promotionModel.deleteOne({_id: id}).exec();
     }
+
+    computeVote(id: string, vote: number){
+        return this.promotionModel.findByIdAndUpdate(
+            {
+                _id: id,
+            },
+            {
+                votes: vote,
+            },
+            {
+                new: true,
+            },
+        ).exec();
+    }
+
+    findByPrice(min: number, max: number){
+        if(max != 0){
+            return this.promotionModel.find({ price: { $gte: min, $lte: max } });
+        } else {
+            return this.promotionModel.find({ price: { $gte: min } });
+        }
+    }
+
 }

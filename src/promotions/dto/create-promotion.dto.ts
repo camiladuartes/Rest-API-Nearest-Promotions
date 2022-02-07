@@ -20,11 +20,14 @@ export class CreatePromotionDto {
   @IsNumber()
   readonly long: string;
 
-  @IsInt()
+  @IsNumber()
   readonly price: number;
 
-  @IsInt()
+  @IsNumber()
   readonly promoPercentage: number;
+
+  @IsInt()
+  readonly votes: number;
 
   @IsBoolean()
   readonly active: boolean;

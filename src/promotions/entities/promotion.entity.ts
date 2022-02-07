@@ -61,6 +61,13 @@ export class Promotion {
     promoPercentage: number;
 
     @ApiProperty({
+        example: 300,
+        description: 'The number of votes for a promotion'
+    })
+    @Prop()
+    votes: number;
+
+    @ApiProperty({
         example: true,
         description: 'The status of the promotion'
     })

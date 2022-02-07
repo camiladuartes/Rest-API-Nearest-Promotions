@@ -24,6 +24,30 @@ export class PromotionsController {
         return this.promotionsService.create(createPromotionDto);
     }
 
+    @Get('filter-price')
+    @ApiOperation({ summary: 'Filter promotions' })
+    @ApiResponse({
+        status: 200,
+        description: 'Filter promotions with a param',
+        type: Promotion,
+    })
+    filter(@Body() content: any) {
+        let min : number;
+        let max : number;
+        if(content.min== null){
+            min = 0;
+        } else {
+            min = content.min;
+        }
+
+        if(content.max== null){
+            max = 0;
+        } else {
+            max = content.max;
+        }
+        return this.promotionsService.findByPrice(min, max);
+    }
+
     @Get()
     @ApiOperation({ summary: 'Finds all promotions' })
     @ApiResponse({

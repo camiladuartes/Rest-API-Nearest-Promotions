@@ -23,6 +23,13 @@ export class VotesService {
     if (promotion == null){
       throw new HttpException('Promotion not found', HttpStatus.NOT_ACCEPTABLE);
    }
+   let votes = promotion.votes;
+   if(vote.positive){
+     votes += 1;
+   } else {
+    votes -= 1;
+   }
+   this.promotionService.computeVote(promotion._id, votes);
     return vote.save();
   }
 
