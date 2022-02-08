@@ -4,6 +4,7 @@ import { Promotion, PromotionDocument } from './entities/promotion.entity';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { UpdatePromotionDto } from './dto/update-promotion.dto';
+import { latLongDistance } from 'src/utils/utility-functions';
 
 // Provider; injectable as a dependency of another
 @Injectable()
@@ -57,12 +58,13 @@ export class PromotionsService {
         ).exec();
     }
 
-    findByPrice(min: number, max: number){
-        if(max != 0){
-            return this.promotionModel.find({ price: { $gte: min, $lte: max } });
-        } else {
-            return this.promotionModel.find({ price: { $gte: min } });
-        }
+    findByFilters(min: number, max: number, distance: number, pattern: string, latUser: number, longUser: number){
+        // if(max != 0){
+        //     return this.promotionModel.find({ price: { $gte: min, $lte: max } });
+        // } else {
+        //     return this.promotionModel.find({ price: { $gte: min } });
+        // }
+        return latLongDistance(-5.895866971117782, -35.196272682150344, -5.890407764084864,-35.190150219670585);
     }
 
 }

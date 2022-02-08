@@ -34,6 +34,10 @@ export class PromotionsController {
     filter(@Body() content: any) {
         let min : number;
         let max : number;
+        let distance: number;
+        let pattern: string;
+        let latUser: number;
+        let longUser: number;
         if(content.min== null){
             min = 0;
         } else {
@@ -45,7 +49,23 @@ export class PromotionsController {
         } else {
             max = content.max;
         }
-        return this.promotionsService.findByPrice(min, max);
+
+        if(content.distance == null){
+            distance = 0;
+        } else{
+            distance = content.distance;
+        }
+
+        if(content.pattern == null){
+            pattern = "";
+        } else{
+            pattern = content.pattern;
+        }
+
+        latUser = content.latUser;
+        longUser = content.longUser;
+
+        return this.promotionsService.findByFilters(min, max, distance, pattern, latUser, longUser);
     }
 
     @Get()
