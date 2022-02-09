@@ -39,10 +39,9 @@ export class CreatePromotionDto {
   readonly dateCreated: Date;
 
   @IsDefined()
-  @IsNotEmptyObject()   
-  @ValidateNested({ each: true })
-  @Type(() => CreateVoteDto)
-  votos: CreateVoteDto[];
+  @IsNotEmptyObject() 
+  @ValidateNested()  
+  voto: Vote;
 
   
 

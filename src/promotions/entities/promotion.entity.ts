@@ -88,7 +88,7 @@ export class Promotion {
         description: 'The votes of the promotion'
     })
     @Prop()
-    votos: CreateVoteDto[];
+    voto: Vote;
 }
 
 export const PromotionSchema = SchemaFactory.createForClass(Promotion);
