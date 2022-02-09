@@ -26,6 +26,12 @@ export class PromotionsService {
         return this.promotionModel.findById(id);
     }
 
+    // async findAllVotesByPromotion(promotionId: string) {
+    //     // const promotionVotes = await this.votesService.findAllByPromotion(promotionId);
+    //     // return promotionVotes;
+    //     return this.voteModel.find({idPromotion: promotionId});
+    // }
+
     update(id: string, promotion: UpdatePromotionDto) {
         return this.promotionModel.findByIdAndUpdate(
             {

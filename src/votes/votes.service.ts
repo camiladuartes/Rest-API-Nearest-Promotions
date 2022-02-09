@@ -41,6 +41,10 @@ export class VotesService {
     return this.voteModel.findById(id);
   }
 
+  findAllByPromotion(idPromotion: string) {
+    return this.voteModel.find({_idPromotion: idPromotion});
+  }
+
   update(id: string, updateVoteDto: UpdateVoteDto) {
     return this.voteModel.findByIdAndUpdate(
       {

@@ -90,6 +90,17 @@ export class PromotionsController {
         return this.promotionsService.findOne(id);
     }
 
+    // @Get(':promotionId/votes')
+    // @ApiOperation({ summary: 'Find all votes from a promotion id' })
+    // @ApiResponse({
+    //     status: 200,
+    //     description: 'Returns all votes of a specified promotion',
+    //     type: Promotion,
+    // })
+    // async findAllVotesByPromotion(promotionId: string) {
+    //     return this.votesService.findAllByPromotion(promotionId);
+    // }
+
     @Patch(':id')
     @ApiOperation({ summary: 'Updates a promotion by id' })
     @ApiResponse({
