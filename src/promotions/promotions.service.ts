@@ -58,13 +58,28 @@ export class PromotionsService {
         ).exec();
     }
 
-    findByFilters(min: number, max: number, distance: number, pattern: string, latUser: number, longUser: number){
-        // if(max != 0){
-        //     return this.promotionModel.find({ price: { $gte: min, $lte: max } });
-        // } else {
-        //     return this.promotionModel.find({ price: { $gte: min } });
-        // }
-        return latLongDistance(-5.895866971117782, -35.196272682150344, -5.890407764084864,-35.190150219670585);
+    findByPrice(min: number, max: number){
+ 
+        if(max != 0){
+            return this.promotionModel.find({ price: { $gte: min, $lte: max } });
+        } else {
+            return this.promotionModel.find({ price: { $gte: min } });
+        }
     }
 
+    async findByDistance(distance: number, lat: number, long: number){
+        let promotions = await this.findAll();
+        let rangePromotions = []
+        promotions.forEach(element => {
+            console.log(element.id,latLongDistance(element.lat, element.long, lat, long));
+            if(latLongDistance(element.lat, element.long, lat, long) <= distance){
+                rangePromotions.push(element);
+            }
+        });
+        return rangePromotions;
+    }
+
+    async findByPattern(pattern: string){
+        return this.promotionModel.find({$or :[{"product": {'$regex': pattern}}, {"store": {'$regex': pattern}}, {"location": {'$regex': pattern}}]});
+    }
 }
