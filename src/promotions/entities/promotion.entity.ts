@@ -1,6 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { Vote } from "src/votes/entities/vote.entity";
+import { CreateVoteDto } from "src/votes/dto/create-vote.dto";
 
 export type PromotionDocument = Promotion & Document;
 
@@ -80,6 +82,13 @@ export class Promotion {
     })
     @Prop()
     dateCreated: Date;
+
+    @ApiProperty({
+        example: new Vote(),
+        description: 'The votes of the promotion'
+    })
+    @Prop()
+    votos: CreateVoteDto[];
 }
 
 export const PromotionSchema = SchemaFactory.createForClass(Promotion);
