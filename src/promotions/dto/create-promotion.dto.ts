@@ -40,8 +40,8 @@ export class CreatePromotionDto {
 
   @IsDefined()
   @IsNotEmptyObject() 
-  @ValidateNested()  
-  voto: Vote;
+  @ValidateNested({ each: true })  
+  voto:  [Vote];
 
   
 
