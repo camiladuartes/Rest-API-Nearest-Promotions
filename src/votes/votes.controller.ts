@@ -22,6 +22,17 @@ export class VotesController {
     return this.votesService.create(createVoteDto);
   }
 
+  @Get(':id/promotion')
+  @ApiOperation({ summary: 'Find all votes by promotion' })
+  @ApiResponse({
+      status: 200,
+      description: 'Returns a vote with the specified id',
+      type: Vote,
+  })
+  findAllByPromotion(@Param('id') id: string) {
+    return this.votesService.findAllByPromotion(id);
+  }
+
   @Get()
   @ApiOperation({ summary: 'Finds all votes' })
   @ApiResponse({

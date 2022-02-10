@@ -36,6 +36,10 @@ export class CommentsService {
         return this.commentModel.findById(id);
     }
 
+    findAllByPromotion(idPromotion: string) {
+        return this.commentModel.find({idPromotion: idPromotion});
+      }
+
     update(id: string, comment: UpdateCommentDto) {
         return this.commentModel.findByIdAndUpdate(
             {

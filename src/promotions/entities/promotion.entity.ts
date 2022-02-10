@@ -80,6 +80,13 @@ export class Promotion {
     })
     @Prop()
     dateCreated: Date;
+
+    @ApiProperty({
+        example: '61f9e8099355d985b20f8347',
+        description: 'User\'s id'
+    })
+    @Prop()
+    idUser: string;
 }
 
 export const PromotionSchema = SchemaFactory.createForClass(Promotion);

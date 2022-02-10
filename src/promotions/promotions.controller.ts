@@ -113,7 +113,20 @@ export class PromotionsController {
         type: Promotion,
     })
     redirect(@Res() res, @Param('promotionId') id: string){
-        res.redirect('/votes/'+id);
+        res.redirect('/votes/'+id+"/promotion");
+        // @Redirect('/votesa/:promotionId');
+
+    }
+
+    @Get(':promotionId/comments')
+    @ApiOperation({ summary: 'Find all comments from a promotion id' })
+    @ApiResponse({
+        status: 200,
+        description: 'Returns all comments of a specified promotion',
+        type: Promotion,
+    })
+    redirec(@Res() res, @Param('promotionId') id: string){
+        res.redirect('/comments/'+id+"/promotion");
         // @Redirect('/votesa/:promotionId');
 
     }

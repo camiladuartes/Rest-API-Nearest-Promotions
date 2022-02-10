@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsBoolean, IsDate, IsInt, IsNumber, IsString } from 'class-validator';
+import { IsBoolean, IsDate, IsInt, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 
 // Data Transfer Object; maps and validates data received from post http request
@@ -35,5 +35,9 @@ export class CreatePromotionDto {
   @IsDate()
   @Type(() => Date)
   readonly dateCreated: Date;
+
+  @IsNotEmpty()
+  @IsString()
+  readonly idUser: string;
 
 }

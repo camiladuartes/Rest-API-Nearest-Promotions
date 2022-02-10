@@ -35,6 +35,17 @@ export class CommentsController {
         return this.commentsService.findAll();
     }
 
+    @Get(':id/promotion')
+    @ApiOperation({ summary: 'Find all comments by promotion' })
+    @ApiResponse({
+        status: 200,
+        description: 'Returns a vote with the specified id',
+        type: Comment,
+    })
+    findAllByPromotion(@Param('id') id: string) {
+      return this.commentsService.findAllByPromotion(id);
+    }
+
     @Get(':id')
     @ApiOperation({ summary: 'Find a comment by id' })
     @ApiResponse({

@@ -42,7 +42,7 @@ export class VotesService {
   }
 
   findAllByPromotion(idPromotion: string) {
-    return this.voteModel.find({_idPromotion: idPromotion});
+    return this.voteModel.find({idPromotion: idPromotion});
   }
 
   update(id: string, updateVoteDto: UpdateVoteDto) {
