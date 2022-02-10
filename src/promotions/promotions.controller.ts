@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, HttpStatus, HttpException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, HttpStatus, HttpException, Redirect, Res } from '@nestjs/common';
 import {
     ApiOperation,
     ApiResponse,
@@ -7,17 +7,18 @@ import { PromotionsService } from './promotions.service';
 import { CreatePromotionDto } from './dto/create-promotion.dto'
 import { UpdatePromotionDto } from './dto/update-promotion.dto'
 import { Promotion } from './entities/promotion.entity';
+import { Router } from 'express';
 
 // Receives HTTP request; localhost:3000/promotions
 // Maps resource endpoints to a serive method
 @Controller('promotions')
 export class PromotionsController {
-    constructor(private readonly promotionsService: PromotionsService) {}
+    constructor(private readonly promotionsService: PromotionsService) { }
 
     @Post()
-    @ApiOperation({summary: 'Creates a new promotion'})
-    @ApiResponse({ 
-        status: 201, 
+    @ApiOperation({ summary: 'Creates a new promotion' })
+    @ApiResponse({
+        status: 201,
         description: 'Creates a promotion.'
     })
     async create(@Body() createPromotionDto: CreatePromotionDto) {
@@ -32,15 +33,15 @@ export class PromotionsController {
         type: Promotion,
     })
     filterPrice(@Query() content: any) {
-        let min : number;
-        let max : number;
-        if(content.min== null){
+        let min: number;
+        let max: number;
+        if (content.min == null) {
             min = 0;
         } else {
             min = Number(content.min);
         }
 
-        if(content.max== null){
+        if (content.max == null) {
             max = 0;
         } else {
             max = Number(content.max);
@@ -60,20 +61,20 @@ export class PromotionsController {
         let latUser: number;
         let longUser: number;
 
-        if(content.distance == null){
+        if (content.distance == null) {
             distance = 0;
-        } else{
+        } else {
             distance = Number(content.distance);
         }
 
         latUser = Number(content.latUser);
         longUser = Number(content.longUser);
 
-        if (distance == 0 || isNaN(distance) || isNaN(latUser)  || isNaN(longUser) ){
+        if (distance == 0 || isNaN(distance) || isNaN(latUser) || isNaN(longUser)) {
             throw new HttpException('Parametters nos acceptable', HttpStatus.NOT_ACCEPTABLE);
         }
         // console.log(min, max, distance, pattern, latUser, longUser);
-        return this.promotionsService.findByDistance( distance, latUser, longUser);
+        return this.promotionsService.findByDistance(distance, latUser, longUser);
     }
 
     @Get('filter-pattern')
@@ -86,7 +87,7 @@ export class PromotionsController {
     filterPattern(@Query() content: any) {
         let pattern: string;
         console.log(content.pattern);
-        if(content.pattern == undefined){
+        if (content.pattern == undefined) {
             new HttpException('Parametters nos acceptable', HttpStatus.NOT_ACCEPTABLE);
         }
         pattern = content.pattern;
@@ -104,6 +105,22 @@ export class PromotionsController {
         return this.promotionsService.findAll();
     }
 
+    @Get(':promotionId/votes')
+    @ApiOperation({ summary: 'Find all votes from a promotion id' })
+    @ApiResponse({
+        status: 200,
+        description: 'Returns all votes of a specified promotion',
+        type: Promotion,
+    })
+    redirect(@Res() res, @Param('promotionId') id: string){
+        res.redirect('/votes/'+id);
+        // @Redirect('/votesa/:promotionId');
+
+    }
+    // async findAllVotesByPromotion(promotionId: string) {
+    //     return "this.votesService.findAllByPromotion(promotionId)";
+    // }
+
     @Get(':id')
     @ApiOperation({ summary: 'Find a promotion by id' })
     @ApiResponse({
@@ -115,17 +132,6 @@ export class PromotionsController {
         return this.promotionsService.findOne(id);
     }
 
-    // @Get(':promotionId/votes')
-    // @ApiOperation({ summary: 'Find all votes from a promotion id' })
-    // @ApiResponse({
-    //     status: 200,
-    //     description: 'Returns all votes of a specified promotion',
-    //     type: Promotion,
-    // })
-    // async findAllVotesByPromotion(promotionId: string) {
-    //     return this.votesService.findAllByPromotion(promotionId);
-    // }
-
     @Patch(':id')
     @ApiOperation({ summary: 'Updates a promotion by id' })
     @ApiResponse({
@@ -136,7 +142,7 @@ export class PromotionsController {
     update(@Param('id') id: string, @Body() updatePromotionDto: UpdatePromotionDto) {
         return this.promotionsService.update(id, updatePromotionDto);
     }
-    
+
     @Delete(':id')
     @ApiOperation({ summary: 'Deletes a promotion' })
     @ApiResponse({
